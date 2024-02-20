@@ -7,7 +7,7 @@ class Linkedlist{
     public:
     Linkedlist()
     {
-        head=nullptr;
+        head=new Node();
     }
     Node* gotolastnode()
     {
@@ -29,11 +29,25 @@ class Linkedlist{
         }
         return temp2;
     }
+    
+    void insertNodeAtBegging(int d){
+        Node* temp=new Node(d);
+        temp->next=head->next;
+        head->next=temp; 
+    }
+    void InsertNodeAfterNthPosition(int data,int N)
+    {
+        Node* temp=GotoNthElement(N);
+        Node* newNode=new Node(data);
+        newNode->next=temp->next;
+        temp->next=newNode;
+
+    }
     void insertNodeAtEnd(int d){
         Node* newNode = new Node(d);
         if(head==nullptr)
         {
-            head=newNode;
+            head->next=newNode;
             return;
         }
         else
@@ -43,14 +57,8 @@ class Linkedlist{
 
         }
     }
-    void insertNodeAtBegging(int d){
-        Node* temp=new Node(d);
-        temp->next=head;
-        head=temp; 
-    }
     void printList(){
-        Node* t=new Node();
-        t=head;
+        Node* t=head->next;
         while(t!=NULL)
         {
             cout<<t->data<<endl;
@@ -59,16 +67,32 @@ class Linkedlist{
     }
     void DeleteAtBegging()
     {
-        Node* temp=new Node();
-        temp=head;
+        Node* temp=head;
         head=head->next;
         free(temp);
     }
     void DeleteAtEnd()
     {
-        Node *temp=new Node();
-        temp=gotosecondlastnode();
+        Node *temp=gotosecondlastnode();
         free(temp->next);
         temp->next=nullptr;
+    }
+    void DeleteNthElement(int n)
+    {
+        Node* temp=GotoNthElement(n-1);
+        Node* temp2= temp->next;
+        temp->next=temp2->next;
+        free(temp2);
+    }
+    
+    Node* GotoNthElement(int N)
+    {
+        Node* temp=head;
+        for(int i=N;i>0;i--)
+        {
+            temp=temp->next;
+        }
+        
+        return temp;
     }
 };
