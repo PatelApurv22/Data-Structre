@@ -4,14 +4,31 @@ class Node{
     public:
         int data;
         Node* next;
-    public:
         Node(){
-            data=0;
+            data=(int)NULL;
             next=nullptr;
         };
         Node(int d)
         {
             data=d;
             next=nullptr;
+        };
+};
+class CNode{
+    public:
+        CNode* Left;
+        int data;
+        CNode* Right;
+        CNode()
+        {
+            Left=nullptr;
+            Right=nullptr;
+            data=(int)NULL;
+        };
+        CNode(int d)
+        {
+            Left=nullptr;
+            Right=nullptr;
+            data=d;
         };
 };

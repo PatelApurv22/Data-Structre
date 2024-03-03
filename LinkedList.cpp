@@ -45,7 +45,7 @@ class Linkedlist{
     }
     void insertNodeAtEnd(int d){
         Node* newNode = new Node(d);
-        if(head==nullptr)
+        if(head->next==nullptr)
         {
             head->next=newNode;
             return;
@@ -65,7 +65,7 @@ class Linkedlist{
             t=t->next;
         }
     }
-    void DeleteAtBegging()
+    void DeleteAtBegging()  
     {
         Node* temp=head;
         head=head->next;
@@ -94,5 +94,42 @@ class Linkedlist{
         }
         
         return temp;
+    }
+    int getsize()
+    {
+        int size=0;
+        Node* t=head->next;
+        while(t!=NULL)
+        {
+            t=t->next;
+            size++;
+        }
+        return size;
+    }
+    void Sort()
+    {
+        Node* tempi=new Node();
+        Node* tempj=new Node();
+        tempi=head->next;
+        int size=getsize();
+        int temp;
+        cout<<size;
+        for(int i=size;size>0;i--)
+        {
+            
+            for(int j=i;size>0;j--)
+            {
+                tempj=tempi;
+                if((tempi->data)>(tempj->data))
+                {
+                    cout<<"ok";
+                    temp=tempi->data;
+                    tempi->data=tempj->data;
+                    tempj->data=temp;
+                }
+                tempj=tempj->next;
+            }
+            tempi=tempi->next;
+        }
     }
 };
